@@ -47,6 +47,7 @@
       <h2>Portfolio</h2>
       <Portfolio />
       <img
+        style="border-color: rgb(19, 19, 19)"
         @click="scrollTo('contact')"
         class="arrow"
         src="../assets/arrow-circle-down-solid.svg"
@@ -93,15 +94,22 @@ export default {
     },
   },
   mounted() {
+    let that = this,
+      i = 0,
+      pages = document.getElementsByClassName("page");
     window.addEventListener("resize", function () {
-      this.height = document.getElementById("header").offsetHeight;
+      that.height = document.getElementById("header").offsetHeight;
+      document.getElementsByClassName("page").forEach((element) => {
+        element.style.height = "calc(100vh - " + that.height + "px)";
+      });
       document.getElementById("container").style.marginTop = this.height + "px";
     });
     this.height = document.getElementById("header").offsetHeight;
     document.getElementById("container").style.marginTop = this.height + "px";
-    let that = this,
-      i = 0,
-      pages = document.getElementsByClassName("page");
+    document.getElementsByClassName("page").forEach((element) => {
+      element.style.height = "calc(100vh - " + that.height + "px)";
+    });
+
     that.scrollTo(pages[0].id);
     document.addEventListener("wheel", function (e) {
       if (e.deltaY > 0) {
@@ -126,10 +134,9 @@ export default {
 #container {
   background: linear-gradient(
     220deg,
-    #fca311 calc(50% - 1px),
-    rgb(19, 19, 19) 50%
+    #fca311 calc(50vmax - 1px),
+    rgb(19, 19, 19) 50vmax
   );
-  background-size: 150%;
 }
 h2 {
   color: rgb(19, 19, 19);
@@ -184,12 +191,14 @@ nav {
 }
 .page {
   height: calc(100vh - 80px);
+  position: relative;
 }
 .arrow {
+  margin-left: -32px;
+  position: absolute;
+  bottom: 50px;
   height: 40px;
   padding: 10px;
-  margin-top: 70vh;
-  margin-bottom: 5vh;
   border: 2px solid white;
   border-radius: 50%;
   background: transparent;
@@ -198,12 +207,6 @@ nav {
   &:hover {
     animation: pulse 1s infinite, slide 1.5s alternate infinite;
   }
-}
-#who-am-i {
-  margin-top: 80px;
-}
-#services {
-  //
 }
 #offers {
   background: rgb(19, 19, 19);
