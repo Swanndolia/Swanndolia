@@ -1,0 +1,225 @@
+<template>
+  <main>
+    <header>
+      <img id="logo" src="../assets/logo.png" alt="logo" />
+      <nav>
+        <a id="who-am-i-link" class="underline" @click="scrollTo('who-am-i')"
+          >Qui suis-je ?</a
+        >
+        <a id="services-link" @click="scrollTo('services')">Services</a>
+        <a id="offers-link" @click="scrollTo('offers')">Offres</a>
+        <a id="portfolio-link" @click="scrollTo('portfolio')">Portfolio</a>
+        <a id="contact-link" @click="scrollTo('contact')">Contact</a>
+      </nav>
+    </header>
+
+    <section id="who-am-i" class="page">
+      <h2>Qui suis-je ?</h2>
+      <img
+        @click="scrollTo('services')"
+        class="arrow"
+        src="../assets/arrow-circle-down-solid.svg"
+      />
+    </section>
+
+    <section id="services" class="page">
+      <h2 class="white">Services</h2>
+      <img
+        @click="scrollTo('offers')"
+        class="arrow"
+        src="../assets/arrow-circle-down-solid.svg"
+      />
+    </section>
+
+    <section id="offers" class="page">
+      <h2 class="white">Offres</h2>
+      <img
+        @click="scrollTo('portfolio')"
+        class="arrow"
+        src="../assets/arrow-circle-down-solid.svg"
+      />
+    </section>
+
+    <section id="portfolio" class="page">
+      <h2>Portfolio</h2>
+      <img
+        @click="scrollTo('contact')"
+        class="arrow"
+        src="../assets/arrow-circle-down-solid.svg"
+      />
+    </section>
+
+    <section id="contact" class="page">
+      <h2 class="orange">Contact</h2>
+      <img
+        @click="scrollTo('who-am-i')"
+        class="arrow"
+        src="../assets/arrow-circle-up-solid.svg"
+      />
+    </section>
+  </main>
+</template>
+
+<script>
+export default {
+  name: "Home",
+  components: {},
+  methods: {
+    scrollTo(elementId) {
+      document
+        .getElementsByClassName("underline")[0]
+        .classList.remove("underline");
+      document.getElementById(elementId + "-link").classList.add("underline");
+      window.scrollTo({
+        top: document.getElementById(elementId).offsetTop - 80,
+        behavior: "smooth",
+      });
+    },
+  },
+  mounted() {
+    let that = this,
+      i = 0,
+      pages = document.getElementsByClassName("page");
+    that.scrollTo(pages[0].id);
+    document.addEventListener("wheel", function (e) {
+      if (e.deltaY > 0) {
+        if (i < pages.length - 1) {
+          that.scrollTo(pages[++i].id);
+        } else {
+          that.scrollTo(pages[i].id);
+        }
+      } else if (e.deltaY < 0) {
+        if (i > 0) {
+          that.scrollTo(pages[--i].id);
+        } else {
+          that.scrollTo(pages[i].id);
+        }
+      }
+    });
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+h2 {
+  color: rgb(19, 19, 19);
+  font-weight: 900;
+  font-size: 40px;
+  padding-top: 20px;
+  margin: 0;
+}
+.white {
+  color: #e5e5e5;
+}
+.orange {
+  color: #fca311;
+}
+header {
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: #14213d;
+  z-index: 9999999;
+}
+#logo {
+  height: 60px;
+  margin: 5px;
+}
+nav {
+  display: flex;
+  flex: 0.4;
+  justify-content: space-around;
+  & a {
+    font-weight: 900;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 0px;
+    color: #e5e5e5;
+    text-decoration: none;
+    border-bottom: 3px solid #14213d;
+    &:hover {
+      border-color: #fca311;
+    }
+  }
+}
+.underline {
+  border-color: #fca311;
+}
+.page {
+  height: calc(100vh - 80px);
+}
+.arrow {
+  height: 40px;
+  padding: 10px;
+  margin-top: 70vh;
+  margin-bottom: 5vh;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: transparent;
+  animation: slide 1.5s alternate infinite,
+    blink 1.5s alternate infinite;
+  transform: translate3d(0, 0, 0);
+  &:hover {
+    animation: pulse 1s infinite, slide 1.5s alternate infinite;
+  }
+}
+#who-am-i {
+  margin-top: 80px;
+  background: linear-gradient(
+    220deg,
+    #fca311 calc(50% - 1px),
+    rgb(19, 19, 19) 50%
+  );
+}
+#services {
+  background: linear-gradient(
+    40deg,
+    rgb(19, 19, 19) calc(84% - 3px),
+    #fca311 26.15%
+  );
+}
+#offers {
+  background: rgb(19, 19, 19);
+}
+#portfolio {
+  background: #e5e5e5;
+}
+#contact {
+  background: rgb(19, 19, 19);
+}
+@keyframes slide {
+  0% {
+    -webkit-transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(40px);
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(#fca311, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+</style>
