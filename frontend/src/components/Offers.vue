@@ -22,10 +22,11 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
 }
-article{
-    border-radius: 20px;
-    border: 2px solid #fca311;
-    margin: 5vh 1vw 0;
-    flex: 1;
+article {
+  border-radius: 20px;
+  background: #e5e5e5;
+  border: 2px solid #fca311;
+  margin: 5vh 1vw 0;
+  flex: 1;
 }
 </style>

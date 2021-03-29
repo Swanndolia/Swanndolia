@@ -44,10 +44,9 @@
     </section>
 
     <section id="portfolio" class="page">
-      <h2>Portfolio</h2>
+      <h2 class="white">Portfolio</h2>
       <Portfolio />
       <img
-        style="border-color: rgb(19, 19, 19)"
         @click="scrollTo('contact')"
         class="arrow"
         src="../assets/arrow-circle-down-solid.svg"
@@ -55,9 +54,10 @@
     </section>
 
     <section id="contact" class="page">
-      <h2 class="orange">Contact</h2>
+      <h2 class="orange" style="background: rgb(19, 19, 19)">Contact</h2>
       <Contact />
       <img
+        style="border-color: rgb(19, 19, 19)"
         @click="scrollTo('who-am-i')"
         class="arrow"
         src="../assets/arrow-circle-up-solid.svg"
@@ -142,8 +142,9 @@ h2 {
   color: rgb(19, 19, 19);
   font-weight: 900;
   font-size: 4.7vmin;
-  padding-top: 20px;
+  padding: 10px;
   margin: 0;
+  align-items: center;
 }
 .white {
   color: #e5e5e5;
@@ -212,10 +213,11 @@ nav {
   background: rgb(19, 19, 19);
 }
 #portfolio {
-  background: #e5e5e5;
+  background: #14213d;
+  border-top: 2px solid #fca311;
 }
 #contact {
-  background: rgb(19, 19, 19);
+  background: #e5e5e5;
 }
 @keyframes slide {
   0% {
