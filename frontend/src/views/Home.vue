@@ -1,8 +1,8 @@
 <template>
   <main>
-    <header>
+    <header id="header">
       <img id="logo" src="../assets/logo.png" alt="logo" />
-      <nav>
+      <nav id="nav">
         <a id="who-am-i-link" class="underline" @click="scrollTo('who-am-i')"
           >Qui suis-je ?</a
         >
@@ -12,27 +12,30 @@
         <a id="contact-link" @click="scrollTo('contact')">Contact</a>
       </nav>
     </header>
+    <div id="container">
+      <section id="who-am-i" class="page">
+        <h2>Qui suis-je ?</h2>
+        <WhoAmI />
+        <img
+          @click="scrollTo('services')"
+          class="arrow"
+          src="../assets/arrow-circle-down-solid.svg"
+        />
+      </section>
 
-    <section id="who-am-i" class="page">
-      <h2>Qui suis-je ?</h2>
-      <img
-        @click="scrollTo('services')"
-        class="arrow"
-        src="../assets/arrow-circle-down-solid.svg"
-      />
-    </section>
-
-    <section id="services" class="page">
-      <h2 class="white">Services</h2>
-      <img
-        @click="scrollTo('offers')"
-        class="arrow"
-        src="../assets/arrow-circle-down-solid.svg"
-      />
-    </section>
-
+      <section id="services" class="page">
+        <h2 class="white">Services</h2>
+        <Services />
+        <img
+          @click="scrollTo('offers')"
+          class="arrow"
+          src="../assets/arrow-circle-down-solid.svg"
+        />
+      </section>
+    </div>
     <section id="offers" class="page">
       <h2 class="white">Offres</h2>
+      <Offers />
       <img
         @click="scrollTo('portfolio')"
         class="arrow"
@@ -42,6 +45,7 @@
 
     <section id="portfolio" class="page">
       <h2>Portfolio</h2>
+      <Portfolio />
       <img
         @click="scrollTo('contact')"
         class="arrow"
@@ -51,6 +55,7 @@
 
     <section id="contact" class="page">
       <h2 class="orange">Contact</h2>
+      <Contact />
       <img
         @click="scrollTo('who-am-i')"
         class="arrow"
@@ -61,9 +66,20 @@
 </template>
 
 <script>
+import WhoAmI from "../components/WhoAmI.vue";
+import Services from "../components/Services.vue";
+import Offers from "../components/Offers.vue";
+import Portfolio from "../components/Portfolio.vue";
+import Contact from "../components/Contact.vue";
+
 export default {
   name: "Home",
-  components: {},
+  components: { WhoAmI, Contact, Services, Offers, Portfolio },
+  data() {
+    return {
+      height: 80,
+    };
+  },
   methods: {
     scrollTo(elementId) {
       document
@@ -71,12 +87,18 @@ export default {
         .classList.remove("underline");
       document.getElementById(elementId + "-link").classList.add("underline");
       window.scrollTo({
-        top: document.getElementById(elementId).offsetTop - 80,
+        top: document.getElementById(elementId).offsetTop - this.height,
         behavior: "smooth",
       });
     },
   },
   mounted() {
+    window.addEventListener("resize", function () {
+      this.height = document.getElementById("header").offsetHeight;
+      document.getElementById("container").style.marginTop = this.height + "px";
+    });
+    this.height = document.getElementById("header").offsetHeight;
+    document.getElementById("container").style.marginTop = this.height + "px";
     let that = this,
       i = 0,
       pages = document.getElementsByClassName("page");
@@ -101,10 +123,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#container {
+  background: linear-gradient(
+    220deg,
+    #fca311 calc(50% - 1px),
+    rgb(19, 19, 19) 50%
+  );
+  background-size: 150%;
+}
 h2 {
   color: rgb(19, 19, 19);
   font-weight: 900;
-  font-size: 40px;
+  font-size: 4.7vmin;
   padding-top: 20px;
   margin: 0;
 }
@@ -115,7 +145,7 @@ h2 {
   color: #fca311;
 }
 header {
-  height: 80px;
+  min-height: 80px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -132,11 +162,13 @@ header {
 }
 nav {
   display: flex;
-  flex: 0.4;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  flex: 0.5;
+  gap: 20px;
+  justify-content: space-evenly;
   & a {
     font-weight: 900;
-    font-size: 18px;
+    font-size: 2.2vmin;
     cursor: pointer;
     padding: 5px 0px;
     color: #e5e5e5;
@@ -161,8 +193,7 @@ nav {
   border: 2px solid white;
   border-radius: 50%;
   background: transparent;
-  animation: slide 1.5s alternate infinite,
-    blink 1.5s alternate infinite;
+  animation: slide 1.5s alternate infinite, blink 1.5s alternate infinite;
   transform: translate3d(0, 0, 0);
   &:hover {
     animation: pulse 1s infinite, slide 1.5s alternate infinite;
@@ -170,18 +201,9 @@ nav {
 }
 #who-am-i {
   margin-top: 80px;
-  background: linear-gradient(
-    220deg,
-    #fca311 calc(50% - 1px),
-    rgb(19, 19, 19) 50%
-  );
 }
 #services {
-  background: linear-gradient(
-    40deg,
-    rgb(19, 19, 19) calc(84% - 3px),
-    #fca311 26.15%
-  );
+  //
 }
 #offers {
   background: rgb(19, 19, 19);
