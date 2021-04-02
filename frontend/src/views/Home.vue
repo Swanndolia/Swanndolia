@@ -44,9 +44,10 @@
     </section>
 
     <section id="portfolio" class="page">
-      <h2 class="white">Portfolio</h2>
+      <h2 class="orange" style="background: rgb(19, 19, 19)">Portfolio</h2>
       <Portfolio />
       <img
+        style="border-color: rgb(19, 19, 19)"
         @click="scrollTo('contact')"
         class="arrow"
         src="../assets/arrow-circle-down-solid.svg"
@@ -54,10 +55,9 @@
     </section>
 
     <section id="contact" class="page">
-      <h2 class="orange" style="background: rgb(19, 19, 19)">Contact</h2>
+      <h2 class="white">Contact</h2>
       <Contact />
       <img
-        style="border-color: rgb(19, 19, 19)"
         @click="scrollTo('who-am-i')"
         class="arrow"
         src="../assets/arrow-circle-up-solid.svg"
@@ -112,6 +112,8 @@ export default {
 
     that.scrollTo(pages[0].id);
     document.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       if (e.deltaY > 0) {
         if (i < pages.length - 1) {
           that.scrollTo(pages[++i].id);
@@ -125,6 +127,7 @@ export default {
           that.scrollTo(pages[i].id);
         }
       }
+      return false;
     });
   },
 };
@@ -213,11 +216,11 @@ nav {
   background: rgb(19, 19, 19);
 }
 #portfolio {
-  background: #14213d;
-  border-top: 2px solid #fca311;
+  background: #e5e5e5;
 }
 #contact {
-  background: #e5e5e5;
+  background: #14213d;
+  border-top: 2px solid #fca311;
 }
 @keyframes slide {
   0% {
