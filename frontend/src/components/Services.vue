@@ -64,7 +64,7 @@ export default {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin: 10vmin 20vw 0 3vw;
+  margin: 10vmin 20vw 0 3vmax;
   max-height: 30vh;
 }
 #line-two {
@@ -72,13 +72,14 @@ export default {
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
-  margin: 15vmin 3vw 0 20vw;
+  margin: 15vmin 3vmax 0 20vw;
   max-height: 30vh;
 }
 .skill {
   & figcaption {
     font-size: 2.3vmin;
     color: #e5e5e5;
+    margin-bottom: 2vmin;
   }
   & img {
     width: 8vmin;

@@ -79,6 +79,7 @@ export default {
   data() {
     return {
       height: 80,
+      cooldown: false,
     };
   },
   methods: {
@@ -111,24 +112,36 @@ export default {
     });
 
     that.scrollTo(pages[0].id);
-    document.addEventListener("wheel", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (e.deltaY > 0) {
-        if (i < pages.length - 1) {
-          that.scrollTo(pages[++i].id);
-        } else {
-          that.scrollTo(pages[i].id);
+    document.addEventListener(
+      "wheel",
+      function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (that.cooldown == false) {
+          that.cooldown = true;
+          setTimeout(() => {
+            that.cooldown = false;
+          }, 1000);
+          if (e.deltaY > 0) {
+            if (i < pages.length - 1) {
+              that.scrollTo(pages[++i].id);
+            } else {
+              that.scrollTo(pages[i].id);
+            }
+          } else if (e.deltaY < 0) {
+            if (i > 0) {
+              that.scrollTo(pages[--i].id);
+            } else {
+              that.scrollTo(pages[i].id);
+            }
+          }
+          return false;
         }
-      } else if (e.deltaY < 0) {
-        if (i > 0) {
-          that.scrollTo(pages[--i].id);
-        } else {
-          that.scrollTo(pages[i].id);
-        }
+      },
+      {
+        passive: false,
       }
-      return false;
-    });
+    );
   },
 };
 </script>

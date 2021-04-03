@@ -39,7 +39,7 @@ div {
 #me {
   top: 0;
   position: absolute;
-  margin: 8vh 10vw;
+  margin: 8vh 3vmax;
   align-self: flex-end;
   display: flex;
   flex-direction: column;
@@ -49,13 +49,14 @@ div {
   & figcaption {
     font-size: 2.3vmin;
     color: rgb(19, 19, 19);
+    margin-bottom: 2vmin;
   }
   & img {
     width: 15vmin;
   }
 }
 #skills {
-  margin: 20vh 10vw;
+  margin: 20vh 3vmax;
   bottom: 0;
   position: absolute;
   max-height: 40vh;
@@ -66,6 +67,7 @@ div {
   & figcaption {
     font-size: 2.3vmin;
     color: #e5e5e5;
+    margin-top: 2vmin;
   }
   & img {
     width: 15vmin;

@@ -45,6 +45,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 0 3vmax;
 }
 article {
   align-items: center;
