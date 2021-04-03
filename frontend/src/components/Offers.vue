@@ -52,7 +52,7 @@ article {
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  background: #14213d;
+  background: transparent;
   border: 2px solid #fca311;
   margin: 5vh 1vw 0;
   flex: 1;

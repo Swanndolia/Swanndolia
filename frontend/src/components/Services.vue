@@ -58,6 +58,8 @@ export default {
   height: calc(100% - 80px - 14vh);
   position: relative;
   margin: 5vmin 0;
+  display: flex;
+  flex-direction: column;
 }
 #line-one {
   display: flex;
@@ -83,6 +85,11 @@ export default {
   }
   & img {
     width: 8vmin;
+  }
+}
+@media screen and (max-width: 1032px) {
+  #services-container {
+    flex-direction: row;
   }
 }
 </style>

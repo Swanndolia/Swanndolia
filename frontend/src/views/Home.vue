@@ -80,10 +80,17 @@ export default {
     return {
       height: 80,
       cooldown: false,
+      i: 0,
     };
   },
   methods: {
     scrollTo(elementId) {
+      let pages = document.getElementsByClassName("page");
+      this.i = [].slice
+        .call(pages)
+        .map((e) => e.id)
+        .indexOf(elementId);
+      console.log(this.i);
       document
         .getElementsByClassName("underline")[0]
         .classList.remove("underline");
@@ -96,8 +103,8 @@ export default {
   },
   mounted() {
     let that = this,
-      i = 0,
       pages = document.getElementsByClassName("page");
+    that.scrollTo(pages[0].id);
     window.addEventListener("resize", function () {
       that.height = document.getElementById("header").offsetHeight;
       document.getElementsByClassName("page").forEach((element) => {
@@ -110,8 +117,6 @@ export default {
     document.getElementsByClassName("page").forEach((element) => {
       element.style.height = "calc(100vh - " + that.height + "px)";
     });
-
-    that.scrollTo(pages[0].id);
     document.addEventListener(
       "wheel",
       function (e) {
@@ -121,22 +126,22 @@ export default {
           that.cooldown = true;
           setTimeout(() => {
             that.cooldown = false;
-          }, 1000);
+          }, 400);
           if (e.deltaY > 0) {
-            if (i < pages.length - 1) {
-              that.scrollTo(pages[++i].id);
+            if (that.i < pages.length - 1) {
+              that.scrollTo(pages[++that.i].id);
             } else {
-              that.scrollTo(pages[i].id);
+              that.scrollTo(pages[that.i].id);
             }
           } else if (e.deltaY < 0) {
-            if (i > 0) {
-              that.scrollTo(pages[--i].id);
+            if (that.i > 0) {
+              that.scrollTo(pages[--that.i].id);
             } else {
-              that.scrollTo(pages[i].id);
+              that.scrollTo(pages[that.i].id);
             }
           }
-          return false;
         }
+        return false;
       },
       {
         passive: false,
@@ -175,10 +180,11 @@ header {
   top: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: #14213d;
   z-index: 9999999;
+  padding: 0 3vmax;
 }
 #logo {
   height: 60px;
@@ -187,8 +193,8 @@ header {
 nav {
   display: flex;
   flex-wrap: wrap;
-  flex: 0.5;
-  gap: 20px;
+  flex: 0.8;
+  margin: 0 3vmax;
   justify-content: space-evenly;
   & a {
     font-weight: 900;
