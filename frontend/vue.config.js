@@ -1,1 +1,1 @@
-module.exports = {    publicPath: process.env.NODE_ENV === 'production'    ? '/Swanndolia/'    : '/swanndolia', }
+module.exports = {    publicPath: process.env.NODE_ENV === 'production'    ? '/Swanndolia/'    : '/', }
