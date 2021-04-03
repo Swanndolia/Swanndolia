@@ -9,6 +9,6 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-  base: process.env.BASE_URL,
+  base: '/swanndolia',
 });
 export default router;
