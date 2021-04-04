@@ -120,7 +120,6 @@ export default {
     document.getElementsByClassName("page").forEach((element) => {
       element.style.height = "calc(100vh - " + that.height + "px)";
     });
-    document.getElementById("portfolio").style.height = "auto";
     document.addEventListener(
       "wheel",
       function (e) {
@@ -236,11 +235,9 @@ nav {
   border: 2px solid white;
   border-radius: 50%;
   background: transparent;
-  animation: slide 1.5s alternate infinite, blink 1.5s alternate infinite;
+  animation: pulse 1s infinite, slide 1.5s alternate infinite,
+    blink 1.5s alternate infinite;
   transform: translate3d(0, 0, 0);
-  &:hover {
-    animation: pulse 1s infinite, slide 1.5s alternate infinite;
-  }
 }
 #offers {
   background: rgb(19, 19, 19);

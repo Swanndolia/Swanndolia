@@ -61,6 +61,7 @@ span {
   text-align: center;
 }
 #services-container {
+  justify-content: center;
   position: relative;
   margin: 5vmin 0;
   display: flex;
@@ -107,5 +108,4 @@ p {
     flex-wrap: wrap;
   }
 }
-
 </style>
