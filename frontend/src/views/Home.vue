@@ -3,16 +3,25 @@
     <header id="header">
       <span id="title">
         <img id="logo" src="../assets/logo.png" alt="logo" />
-        <h1 class="orange">WebElit</h1></span
+        <h1 class="white">Web<span class="orange">Elit</span></h1></span
       >
       <nav id="nav">
-        <a id="who-am-i-link" class="underline" @click="scrollTo('who-am-i')"
+        <a
+          id="who-am-i-link"
+          class="underline link"
+          @click="scrollTo('who-am-i')"
           >Qui suis-je ?</a
         >
-        <a id="services-link" @click="scrollTo('services')">Services</a>
-        <a id="offers-link" @click="scrollTo('offers')">Offres</a>
-        <a id="portfolio-link" @click="scrollTo('portfolio')">Portfolio</a>
-        <a id="contact-link" @click="scrollTo('contact')">Contact</a>
+        <a class="link" id="services-link" @click="scrollTo('services')"
+          >Services</a
+        >
+        <a class="link" id="offers-link" @click="scrollTo('offers')">Offres</a>
+        <a class="link" id="portfolio-link" @click="scrollTo('portfolio')"
+          >Portfolio</a
+        >
+        <a class="link" id="contact-link" @click="scrollTo('contact')"
+          >Contact</a
+        >
       </nav>
     </header>
     <div id="container">
@@ -93,7 +102,7 @@ export default {
         .call(pages)
         .map((e) => e.id)
         .indexOf(elementId);
-      console.log(this.i);
+      this.setHeaderColor(this.i);
       document
         .getElementsByClassName("underline")[0]
         .classList.remove("underline");
@@ -102,6 +111,21 @@ export default {
         top: document.getElementById(elementId).offsetTop - this.height,
         behavior: "smooth",
       });
+    },
+    setHeaderColor(i) {
+      if (i == 0 || i == 4) {
+        document.getElementById("header").style.background = "#14213d";
+        document.getElementsByClassName("link").forEach((element) => {
+          element.classList.remove("scrolled-underline");
+          element.classList.add("default-underline");
+        });
+      } else {
+        document.getElementById("header").style.background = "rgb(19, 19, 19)";
+        document.getElementsByClassName("link").forEach((element) => {
+          element.classList.remove("default-underline");
+          element.classList.add("scrolled-underline");
+        });
+      }
     },
   },
   mounted() {
@@ -195,6 +219,7 @@ header {
   align-items: center;
   background: #14213d;
   z-index: 9999999;
+  transition: 0.5s;
 }
 #logo {
   height: 4vmax;
@@ -214,14 +239,20 @@ nav {
     padding: 5px 0px;
     color: #e5e5e5;
     text-decoration: none;
-    border-bottom: 3px solid #14213d;
+    transition: 0.5s;
     &:hover {
       border-color: #fca311;
     }
   }
 }
 .underline {
-  border-color: #fca311;
+  border-color: #fca311 !important;
+}
+.default-underline {
+  border-bottom: 3px solid #14213d;
+}
+.scrolled-underline {
+  border-bottom: 3px solid rgb(19, 19, 19);
 }
 .page {
   position: relative;
