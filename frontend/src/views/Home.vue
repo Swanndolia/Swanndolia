@@ -120,6 +120,7 @@ export default {
     document.getElementsByClassName("page").forEach((element) => {
       element.style.height = "calc(100vh - " + that.height + "px)";
     });
+    document.getElementById("portfolio").style.height = "auto";
     document.addEventListener(
       "wheel",
       function (e) {
