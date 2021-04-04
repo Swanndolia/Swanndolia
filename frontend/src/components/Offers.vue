@@ -63,6 +63,7 @@ article {
   }
 }
 button {
+  min-width: fit-content;
   width: 30%;
   font-size: 2.5vmin;
   background: transparent;

@@ -1,7 +1,10 @@
 <template>
   <main>
     <header id="header">
-      <img id="logo" src="../assets/logo.png" alt="logo" />
+      <span id="title">
+        <img id="logo" src="../assets/logo.png" alt="logo" />
+        <h1 class="orange">WebElit</h1></span
+      >
       <nav id="nav">
         <a id="who-am-i-link" class="underline" @click="scrollTo('who-am-i')"
           >Qui suis-je ?</a
@@ -152,6 +155,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#title {
+  display: flex;
+  align-items: center;
+}
+h1 {
+  margin: 0;
+  font-size: 2.5vmax;
+}
 #container {
   background: linear-gradient(
     220deg,
@@ -184,18 +195,18 @@ header {
   align-items: center;
   background: #14213d;
   z-index: 9999999;
-  padding: 0 3vmax;
 }
 #logo {
-  height: 60px;
-  margin: 5px;
+  height: 4vmax;
+  margin: 0 3vw;
 }
 nav {
   display: flex;
   flex-wrap: wrap;
-  flex: 0.8;
-  margin: 0 3vmax;
-  justify-content: space-evenly;
+  flex: 0.7;
+  gap: 20px;
+  margin: 0 3vw;
+  justify-content: space-between;
   & a {
     font-weight: 900;
     font-size: 2.2vmin;
@@ -213,7 +224,6 @@ nav {
   border-color: #fca311;
 }
 .page {
-  height: calc(100vh - 80px);
   position: relative;
 }
 .arrow {
