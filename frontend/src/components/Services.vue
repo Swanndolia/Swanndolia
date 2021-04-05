@@ -62,26 +62,36 @@ span {
 }
 #services-container {
   justify-content: center;
-  position: relative;
-  margin: 5vmin 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
+  gap: 6vmax;
 }
 #line-one {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 8vh 20vw 0 3vmax;
+  margin: auto 20vw 0 3vw;
   max-height: 30vh;
+  gap: 4vw;
+  & .skill {
+    margin: 0 4vmin 0 0;
+  }
 }
 #line-two {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: auto 3vmax 0 20vw;
-  max-height: 30vh;
+  margin: auto 3vw 0 20vw;
+  gap: 4vw;
+  & .skill {
+    margin: 0 0 0 4vmin;
+  }
 }
 .skill {
+  margin: 0;
   & figcaption {
     font-size: 3vmin;
     color: #e5e5e5;
@@ -89,6 +99,7 @@ span {
   }
   & img {
     width: 8vmin;
+    min-width: 80px;
   }
 }
 p {
@@ -98,6 +109,7 @@ p {
 @media screen and (max-width: 1578px) {
   #services-container {
     gap: 5vmin;
+    align-items: center;
   }
   #line-two {
     margin: auto 3vw;

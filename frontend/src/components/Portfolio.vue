@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 span {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-bottom: 5px;
   flex-wrap: wrap;
   flex-direction: row;
@@ -64,12 +64,13 @@ figure {
   justify-content: center;
   position: relative;
   display: flex;
+  top: calc(50% - 80px);
+  transform: translateY(-50%);
   flex-direction: column;
-  margin: 0 3vmin;
 }
 @media screen and (max-width: 800px) {
-  #span {
-    flex-direction: column;
+  span {
+    justify-content: center;
   }
   #portfolio-container {
     flex-direction: row;

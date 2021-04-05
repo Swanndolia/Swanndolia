@@ -45,7 +45,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 0 3vmax;
+  margin: 0 3vw;
 }
 article {
   align-items: center;
@@ -71,7 +71,7 @@ button {
   border-radius: 5vmin;
   cursor: pointer;
   transition: 0.5s;
-  &:hover{
+  &:hover {
     background: lighten(#14213d, 10);
   }
 }
