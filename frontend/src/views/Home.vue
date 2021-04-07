@@ -45,7 +45,7 @@
         />
       </section>
     </div>
-    <section id="offers" class="page">
+    <!-- <section id="offers" class="page">
       <h2 class="white">Offres</h2>
       <Offers />
       <img
@@ -53,8 +53,7 @@
         class="arrow"
         src="../assets/arrow-circle-down-solid.svg"
       />
-    </section>
-
+    </section> -->
     <section id="portfolio" class="page">
       <h2 class="orange" style="background: rgb(19, 19, 19)">Portfolio</h2>
       <Portfolio />
